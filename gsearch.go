@@ -4,16 +4,15 @@ import (
   "fmt"
   "golang.org/x/blog/content/context/google"
   "golang.org/x/net/context"
+  "flag"
 )
 
 func main() {
-  var (
-    ctx    context.Context
-  )
+  ctx := context.Background()
+  flag.Parse()
+  term := flag.Args()
 
-  ctx = context.Background()
-
-  results, err := google.Search(ctx, "golang")
+  results, err := google.Search(ctx, term[0])
 
   if err != nil {
     fmt.Println(err)
